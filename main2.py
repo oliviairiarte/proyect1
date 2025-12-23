@@ -76,9 +76,9 @@ def organizar_descargas(carpeta):
 ("----------------------------------------------------------------------------------------")
 
 
+if __name__ == "__main__":
+    ruta_prueba = os.path.join(os.path.expanduser("~"), "Desktop", "prueba")
+    print(f"{ruta_prueba}\n")
 
-ruta_prueba = os.path.join(os.path.expanduser("~"), "Desktop", "prueba")
-print(f"{ruta_prueba}\n")
-
-info = organizar_descargas(ruta_prueba)
-addition(info) #carga el csv
+    info = organizar_descargas(ruta_prueba)
+    addition(info) #carga el csv
