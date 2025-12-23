@@ -8,8 +8,9 @@ def see_type(extension):
         ".txt": "Text", ".md": "Text",
         ".jar": "Java",
         ".png": "Image", ".jpg": "Image", ".jpeg": "Image", ".webp": "Image", ".jfif": "Image",
-        ".exe": "Executable",
-        ".pdf": "PDF"
+        ".exe": "Executable", ".lnk": "Executable",
+        ".pdf": "PDF",
+        ".bmp": "basura"
     }
     # .get() busca la extensión, si no la encuentra devuelve "Indetermined"
     return formatos.get(extension.lower(), "Undetermined")
