@@ -2,10 +2,14 @@
 
 import os
 import work_with_file
+from generate_report import add_to_report as addition
+from datetime import datetime
+
 
 def organizar_descargas(descargas):
     escritorio = os.path.join(os.path.expanduser("~"), "Desktop") # arma la ruta
     files = os.listdir(descargas)
+    lista_dicts = []
 
     for file in files:
         ruta_origen = os.path.join(descargas, file) # ruta + nombre. STRING, bien armado
@@ -26,7 +30,6 @@ def organizar_descargas(descargas):
           timestamp = os.path.getmtime(ruta_origen)
           date = work_with_file.see_date(timestamp)
           suggested_name = work_with_file.rename(prefix,date,extension)
-          #os.rename(nombre,new_name)
 
           # 3. Tratar repetidos
           final_name = work_with_file.unic_name(ruta_destino_carpeta,suggested_name)
@@ -35,11 +38,25 @@ def organizar_descargas(descargas):
           try:
               # 4. MOVER
               os.rename(ruta_origen, ruta_final)
-              print(f"✅ Movido: {file} -> {type_of_file}/{final_name}")
+              print(f"✅ Movido: Fst name:{file} -> {type_of_file} / Final: {final_name}")
           except Exception as e:
               print(f"❌ No se pudo mover {file}: {e}")
-          
 
+          #carguemos info
+          date_time = datetime.now().strftime("%Y-%m-%d %H:%M")
+          diccio = {
+              "Date n time" : date_time,
+              "Original file": name,
+              "Final desktop": type_of_file,
+              "New file name": final_name
+          }
+          print(f"{diccio}\n")
+          lista_dicts.append(diccio)
+          print(f"{lista_dicts}\n")
+
+    return lista_dicts
+
+        
 
 # quiero obtener la ruta a la carpeta Descargas del usuario
 
@@ -48,4 +65,7 @@ descargas = os.path.join(home, "Downloads") #string bien armado
 
 print(descargas)
 
-organizar_descargas(descargas)
+lista_dicts = organizar_descargas(descargas)
+#print(f"TODA LA INFO: {lista_dicts}")
+
+addition(lista_dicts) #carga el csv
