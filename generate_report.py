@@ -6,7 +6,7 @@ def add_to_report(lista): #list of dicts
     # 1. Define the header/field names
     names = ['Date n time','Original file','Final desktop','New file name']
 
-    with open("data2.csv", "w",  newline="") s file:
+    with open("data2.csv", "a",  newline="") as file:
         # Create a DictWriter instance
         writer = csv.DictWriter(file, fieldnames= names)
         
